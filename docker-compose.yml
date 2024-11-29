@@ -1,29 +1,9 @@
-version: '3'
+version: '4'
 
 services:
   hotelskyblue:
     build: lakeSide-hotel-demo-server-master
-    mem_limit: 512m
+    mem_limit: 1024m
     ports:
       - "8080:8080"
-    environment:
-      DB_URL: jdbc:mysql://hotelskyblue_db:3306/skybluedb?createDatabaseIfNotExist=true&serverTimezone=UTC
-      DB_USER: root
-      DB_PASSWORD: sasa1234
-    restart: always
-    depends_on:
-      hotelskyblue_db:
-          condition: service_healthy
-  hotelskyblue_db:
-    image: mysql:8.0.33 
-    ports:
-      - "3307:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: sasa1234
-      MYSQL_PASSWORD: sasa1234
-      MYSQL_DATABASE: skybluedb
-    restart: always
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      timeout: 10s
-      retries: 10
+
